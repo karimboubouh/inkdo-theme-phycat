@@ -1,0 +1,71 @@
+/* Radiation: phycat-radiation, phycat-neon (dark), after sumruler's typora-theme-phycat (MIT).
+   InkDo's tokens first (contrast-checked), then upstream's colours for the chrome. One appearance. */
+:root {
+  --font-body: Optima-Regular, Optima, "LXGW WenKai", PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color-scheme: dark;
+  --font-mono: "Cascadia Code", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --bg: #1b1d1b;
+  --bg-side: #292b29;
+  --sb: #151715;
+  --sb-line: rgba(230, 230, 230, 0.12);
+  --sb-hover: rgba(230, 230, 230, 0.04);
+  --sb-on: rgba(230, 230, 230, 0.1);
+  --field: rgba(230, 230, 230, 0.05);
+  --card: #2d2f2d;
+  --text: #e6e6e6;
+  --text-2: #b9c6b9;
+  --text-3: #9fb0a0;
+  --mark: #717d71;
+  --line: rgba(230, 230, 230, 0.12);
+  --line-2: rgba(230, 230, 230, 0.22);
+  --accent: #4cd964;
+  --on-accent: #101510;
+  --sel: rgba(76, 217, 100, 0.16);
+  --hover: rgba(230, 230, 230, 0.05);
+  --row-on: rgba(230, 230, 230, 0.08);
+  --del: #ff6b6b;
+  --bg-pop: rgba(45, 47, 45, 0.92);
+  --shadow-pop: 0 0 0 0.5px rgba(230, 230, 230, 0.14), 0 8px 24px -6px rgba(0, 0, 0, 0.5);
+  --shadow-pal: 0 0 0 0.5px rgba(230, 230, 230, 0.14), 0 24px 60px -10px rgba(0, 0, 0, 0.62);
+  --scrim: rgba(0, 0, 0, 0.5);
+  --code-bg: rgba(230, 230, 230, 0.04);
+  --hl: rgba(76, 217, 100, 0.24);
+  --hl-on: rgba(76, 217, 100, 0.46);
+  --diff-del: rgba(0, 0, 0, 0.2);
+  --diff-del-on: rgba(255, 107, 107, 0.26);
+  --diff-add: rgba(76, 217, 100, 0.14);
+  --diff-add-on: rgba(76, 217, 100, 0.28);
+  --c-red: #ff6b6b;
+  --c-orange: #ffcb6b;
+  --c-green: #4cd964;
+  --c-blue: #29b6f6;
+  --c-purple: #c792ea;
+  --c-gray: #9fb0a0;
+  --knob: #f2f3f5;
+  --shadow-ctl: 0 0 0 0.5px rgba(230, 230, 230, 0.18), 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 6px 24px rgba(0, 0, 0, 0.45);
+  --media-bg: #0d0f14;
+  --th-bg: rgba(230, 230, 230, 0.03);
+  --dg-node: #29522f;
+  --dg-node-line: #3b974a;
+  --dg-alt: #262826;
+  --dg-alt-2: #2d2f2d;
+  --dg-edge: #9fb0a0;
+  --dg-note: #433b2b;
+  --dg-note-line: #75613f;
+}
+
+.cm-editor {
+  --pc-title: #4cd964;
+  --pc-h2-text: var(--text);
+  --pc-h2-bg: radial-gradient(ellipse at center bottom, rgba(76, 217, 100, 0.1), transparent 70%);
+  --pc-el: #4cd964;
+  --pc-deep: #4cd964;
+  --pc-shallow: color-mix(in srgb, #4cd964, transparent 50%);
+  --pc-so: rgba(76, 217, 100, 0.4);
+  --pc-soo: color-mix(in srgb, #4cd964, transparent 90%);
+  --pc-code: #4cd964;
+  --pc-code-bg: color-mix(in srgb, #4cd964, transparent 90%);
+  --pc-glow: rgba(76, 217, 100, 0.4);
+  --pc-alt: #ffc107;
+}

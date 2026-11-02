@@ -1,0 +1,458 @@
+/* Cherry, an InkDo theme ported from phycat by sumruler (MIT; LICENSE).
+   Built by build.sh from src/; edit there, not here. */
+
+/* Cherry: phycat-cherry, phycat-color (light), after sumruler's typora-theme-phycat (MIT).
+   InkDo's tokens first (contrast-checked), then upstream's colours for the chrome. One appearance. */
+:root {
+  --font-body: Optima-Regular, Optima, "LXGW WenKai", PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color-scheme: light;
+  --font-mono: "Cascadia Code", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --bg: #fdf6f6;
+  --bg-side: #fbf2f2;
+  --sb: #f8eded;
+  --sb-line: rgba(36, 20, 22, 0.12);
+  --sb-hover: rgba(36, 20, 22, 0.04);
+  --sb-on: rgba(36, 20, 22, 0.1);
+  --field: rgba(36, 20, 22, 0.05);
+  --card: #fefbfb;
+  --text: #241416;
+  --text-2: #5e4649;
+  --text-3: #6d5457;
+  --mark: #9f8d8f;
+  --line: rgba(36, 20, 22, 0.12);
+  --line-2: rgba(36, 20, 22, 0.22);
+  --accent: #9a0036;
+  --on-accent: #fff7f9;
+  --sel: rgba(154, 0, 54, 0.16);
+  --hover: rgba(36, 20, 22, 0.05);
+  --row-on: rgba(36, 20, 22, 0.08);
+  --del: #a3123f;
+  --bg-pop: rgba(254, 251, 251, 0.9);
+  --shadow-pop: 0 0 0 0.5px rgba(36, 20, 22, 0.14), 0 8px 24px -6px rgba(0, 0, 0, 0.16);
+  --shadow-pal: 0 0 0 0.5px rgba(36, 20, 22, 0.14), 0 24px 60px -10px rgba(0, 0, 0, 0.3);
+  --scrim: rgba(36, 20, 22, 0.18);
+  --code-bg: rgba(36, 20, 22, 0.04);
+  --hl: rgba(154, 0, 54, 0.24);
+  --hl-on: rgba(154, 0, 54, 0.46);
+  --diff-del: rgba(0, 0, 0, 0.06);
+  --diff-del-on: rgba(163, 18, 63, 0.2);
+  --diff-add: rgba(11, 122, 75, 0.1);
+  --diff-add-on: rgba(11, 122, 75, 0.24);
+  --c-red: #a3123f;
+  --c-orange: #a4580a;
+  --c-green: #0b7a4b;
+  --c-blue: #1f6c9e;
+  --c-purple: #74407f;
+  --c-gray: #6d5457;
+  --knob: #fefbfb;
+  --shadow-ctl: 0 0 0 0.5px rgba(36, 20, 22, 0.18), 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 6px 24px rgba(0, 0, 0, 0.1);
+  --media-bg: #0d0f14;
+  --th-bg: rgba(36, 20, 22, 0.03);
+  --dg-node: #f1d8df;
+  --dg-node-line: #d087a0;
+  --dg-alt: #f8eded;
+  --dg-alt-2: #fbf2f2;
+  --dg-edge: #6d5457;
+  --dg-note: #fbecd5;
+  --dg-note-line: #edd296;
+}
+
+.cm-editor {
+  --pc-title: #aa1141;
+  --pc-h2-text: #fff;
+  --pc-h2-bg: linear-gradient(to right, #b41919, #ea68b6, #b41919);
+  --pc-el: #aa1111;
+  --pc-deep: #9a0036;
+  --pc-shallow: #ffa6a6;
+  --pc-so: #ff40404f;
+  --pc-soo: #fec2c225;
+  --pc-code: #9a0000;
+  --pc-code-bg: #b16c6c25;
+}
+
+/* ── phycat chrome ─────────────────────────────────────────────────────────────────────────
+   The writing surface, after upstream phycat.light.css (sumruler, MIT). Selectors are the
+   editor's own (THEMING.md); InkDo puts every one of them under `.ink-editor`. Each palette
+   sets the --pc-* colours below on `.cm-editor`, upstream's --head-title-* and --element-*.
+
+   What changes from upstream, and why:
+   - No margins: CodeMirror measures each line, so spacing stays InkDo's and bands are drawn
+     inside the line (H2's pill is a ::before), never by margins.
+   - No images or fonts are loaded: the chain icon on links is the 🔗 glyph drawn in one colour
+     (upstream masks an SVG); fonts are named, and used when installed.
+   - Text that must be read (strong, links, hover colours) uses the palette's --accent, which
+     InkDo checks at 4.5:1; upstream's lighter element colours draw the decorations.
+   - Quotes are a row of lines, so the bubble opens on the first and closes on the last. */
+
+/* Upstream's type: Optima for prose and headings, Cascadia Code for code. */
+.cm-line.cm-h {
+  font-family: var(--body-stack);
+  letter-spacing: normal;
+}
+
+/* H1 (and the note's title): centred on its own width, with a short bar that runs out to the
+   heading's width on hover while the heading lifts and takes the title colour. */
+.cm-line:is(.cm-h1, .cm-title) {
+  width: fit-content;
+  min-width: 120px;
+  margin-inline: auto;
+  padding-bottom: 12px;
+  text-align: center;
+  transition: color .3s ease, transform .3s ease;
+}
+.cm-line:is(.cm-h1, .cm-title)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 40px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--pc-h2-bg);
+  background-size: 100% auto;
+  transform: translateX(-50%);
+  transition: width .4s cubic-bezier(.25, .8, .25, 1);
+}
+.cm-line:is(.cm-h1, .cm-title):hover {
+  color: var(--pc-title);
+  transform: translateY(-2px);
+}
+.cm-line:is(.cm-h1, .cm-title):hover::after {
+  width: 100%;
+}
+
+/* H2: the gradient pill in white, its colours sliding across on hover. */
+.cm-line.cm-h2 {
+  isolation: isolate;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-inline: 12px;
+  color: var(--pc-h2-text);
+  transition: transform .4s ease;
+}
+.cm-line.cm-h2::before {
+  content: "";
+  position: absolute;
+  inset: 15px 0 -1px;
+  z-index: -1;
+  border-radius: 8px;
+  background: var(--pc-h2-bg);
+  background-size: 200% auto;
+  background-position: 0 center;
+  box-shadow: 0 2px 5px rgba(61, 184, 211, .15);
+  transition: background-position .5s ease-out, box-shadow .4s ease;
+}
+.cm-line.cm-h2 .cm-ink-mark {
+  color: inherit;
+  opacity: .7;
+}
+.cm-line.cm-h2:hover {
+  transform: scale(1.01);
+}
+.cm-line.cm-h2:hover::before {
+  background-position: 100% center;
+  box-shadow: 0 8px 20px rgba(61, 184, 211, .35);
+}
+
+/* H3: a bar before the heading that thickens as the heading steps right. */
+.cm-line.cm-h3 {
+  width: fit-content;
+  padding-left: 10px;
+  transition: padding-left .3s cubic-bezier(.25, .8, .25, 1), color .3s ease;
+}
+.cm-line.cm-h3::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: calc(14px + 14px * var(--ts));
+  width: 5px;
+  height: calc(17px * var(--ts));
+  border-radius: 4px;
+  background-color: var(--pc-title);
+  transform: translateY(-50%);
+  transition: width .3s cubic-bezier(.25, .8, .25, 1), height .3s cubic-bezier(.25, .8, .25, 1);
+}
+.cm-line.cm-h3:hover {
+  padding-left: 18px;
+  color: var(--pc-title);
+}
+.cm-line.cm-h3:hover::before {
+  width: 7px;
+  height: calc(18.5px * var(--ts));
+}
+
+/* H4, H5 and H6: a filled dot, a ring and a dash, which spring on hover. */
+.cm-line:is(.cm-h4, .cm-h5, .cm-h6) {
+  transition: color .3s ease, transform .3s ease;
+}
+.cm-line:is(.cm-h4, .cm-h5, .cm-h6)::before {
+  display: inline-block;
+  margin-right: 7px;
+  transition: transform .3s cubic-bezier(.34, 1.56, .64, 1), box-shadow .3s ease,
+    background-color .3s ease;
+}
+.cm-line:is(.cm-h4, .cm-h5)::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  box-sizing: border-box;
+  border-radius: 100%;
+}
+.cm-line.cm-h4::before {
+  background-color: var(--pc-title);
+  border: 1px solid var(--pc-title);
+}
+.cm-line.cm-h5::before {
+  background-color: var(--bg);
+  border: 2px solid var(--pc-title);
+}
+.cm-line.cm-h6::before {
+  content: "-";
+  color: var(--pc-title);
+}
+.cm-line:is(.cm-h4, .cm-h5, .cm-h6):hover {
+  color: var(--accent);
+  transform: translateX(6px);
+}
+.cm-line.cm-h4:hover::before {
+  transform: scale(1.3);
+  box-shadow: 0 0 0 4px var(--pc-soo);
+}
+.cm-line.cm-h5:hover::before {
+  background-color: var(--pc-title);
+  transform: scale(1.2);
+  box-shadow: 0 0 0 3px var(--pc-soo);
+}
+.cm-line.cm-h6:hover::before {
+  transform: scaleX(1.8) translateX(1px);
+  font-weight: 700;
+}
+
+/* Strong: the palette's colour, with a soft underline and glow on hover. */
+.cm-ink-strong {
+  color: var(--accent);
+  font-weight: 700;
+  border-bottom: 2px solid transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: border-color .3s ease, color .3s ease, text-shadow .3s ease;
+}
+.cm-ink-strong:hover {
+  border-bottom-color: var(--pc-shallow);
+  text-shadow: 0 2px 8px var(--pc-so);
+}
+
+/* Emphasis: a stitched underline that runs while you hover (upstream's stitchFlow). */
+.cm-ink-em {
+  color: var(--text-2);
+  padding: 0 2px 1px;
+  background-image: linear-gradient(-45deg, transparent 35%, var(--pc-shallow) 35%,
+    var(--pc-shallow) 65%, transparent 65%);
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+  background-size: 6px 3px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: color .2s ease, -webkit-text-stroke .2s ease;
+}
+.cm-ink-em:hover {
+  color: var(--accent);
+  -webkit-text-stroke: .5px var(--accent);
+  background-image: linear-gradient(-45deg, transparent 35%, var(--pc-el) 35%,
+    var(--pc-el) 65%, transparent 65%);
+  animation: stitchFlow .5s linear infinite;
+}
+@keyframes stitchFlow {
+  from { background-position-x: 0; }
+  to { background-position-x: 6px; }
+}
+
+.cm-ink-del {
+  color: var(--text-3);
+  text-decoration-color: var(--pc-el);
+  transition: opacity .3s ease, text-decoration-color .3s ease;
+}
+.cm-ink-del:hover {
+  opacity: .6;
+  text-decoration-color: var(--pc-deep);
+}
+
+/* Links: text-coloured, with the chain icon that turns half a circle on hover. Coloured text
+   (`[text]{.red}`) and callout marks use the link mark too, and are left alone. */
+.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)) {
+  color: var(--text);
+  font-weight: 500;
+  padding: 2px 4px;
+  margin: 0 -2px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: color .2s ease, background-color .2s ease;
+}
+.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour))::before {
+  content: "🔗";
+  display: inline-block;
+  width: 1em;
+  margin-right: 2px;
+  font-size: .85em;
+  line-height: 1;
+  color: transparent;
+  text-shadow: 0 0 0 var(--pc-el);
+  transition: transform .4s cubic-bezier(.25, .8, .25, 1), text-shadow .2s ease;
+}
+.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)):hover {
+  color: var(--accent);
+  background: var(--pc-soo);
+}
+.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)):hover::before {
+  transform: rotate(180deg);
+  text-shadow: 0 0 0 var(--pc-deep);
+}
+
+/* Quotes: a tinted bubble with a sparkle, opened on the first line, closed on the last. */
+.cm-quote {
+  padding-inline: 48px 20px;
+  color: var(--text-2);
+  background-color: var(--pc-soo);
+  transition: background-color .3s ease;
+}
+.cm-quote::before {
+  content: none;
+}
+.cm-line:not(.cm-quote) + .cm-quote,
+.cm-quote:first-child {
+  padding-top: 18px;
+  border-start-start-radius: 16px;
+  border-start-end-radius: 16px;
+}
+.cm-line:not(.cm-quote) + .cm-quote::before,
+.cm-quote:first-child::before {
+  content: "✨";
+  inset: 18px auto auto 16px;
+  width: auto;
+  background: none;
+  font-size: 20px;
+  line-height: 1;
+}
+.cm-quote:has(+ .cm-line:not(.cm-quote)),
+.cm-quote:last-child {
+  padding-bottom: 18px;
+  border-end-start-radius: 16px;
+  border-end-end-radius: 16px;
+}
+
+/* Rules: a dashed line that opens to full width on hover. */
+.cm-hr::after {
+  border-top: 3px dashed var(--pc-shallow);
+  opacity: .6;
+  transform: scaleX(.8);
+  transition: transform .4s ease, opacity .4s ease, border-color .4s ease;
+}
+.cm-hr:hover::after {
+  border-top-color: var(--pc-el);
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Inline code in the palette's code colours; it fills on hover. */
+.cm-ink-code {
+  font-size: .9em;
+  letter-spacing: .5px;
+  color: var(--pc-code);
+  background-color: var(--pc-code-bg);
+  padding: 2px 5px;
+  margin: 0 2px;
+  border-radius: 6px;
+  transition: color .2s ease, background-color .2s ease, box-shadow .2s ease;
+}
+.cm-ink-code:hover {
+  color: #fff;
+  background-color: var(--pc-el);
+  box-shadow: 0 4px 10px var(--pc-so);
+}
+.cm-fence .cm-ink-code:hover {
+  color: inherit;
+  background: none;
+  box-shadow: none;
+}
+
+/* Highlights: a marker stroke that fills the word on hover. */
+.cm-ink-hl {
+  background-color: transparent;
+  background-image: linear-gradient(to top, var(--pc-so), var(--pc-so));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 40%;
+  border-radius: 4px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-size .3s cubic-bezier(.34, 1.56, .64, 1), border-radius .3s ease;
+}
+.cm-ink-hl:hover {
+  background-size: 100% 100%;
+  border-radius: 6px;
+}
+
+/* Lists and tasks: round boxes that fill and pulse when ticked; done tasks are struck through. */
+.cm-bullet {
+  color: var(--pc-el);
+}
+.cm-task-box rect {
+  rx: 8px;
+  stroke: var(--pc-deep);
+}
+.cm-task-box.is-checked rect {
+  fill: var(--pc-el);
+  stroke: var(--pc-el);
+}
+.cm-task-box.is-checked path {
+  stroke: #fff;
+}
+.cm-task-box.is-checked svg {
+  animation: task-pulse .4s forwards;
+}
+@keyframes task-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+.cm-task-done {
+  color: var(--text-3);
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 50%;
+  background-size: 100% 1.5px;
+  background-repeat: no-repeat;
+}
+
+/* Tables: a rounded frame, tinted header, the row and the cell under the pointer. */
+:is(.cm-table, .cm-render-table) table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--pc-shallow);
+  border-radius: 8px;
+  overflow: hidden;
+}
+:is(.cm-table, .cm-render-table) :is(th, td) {
+  border-width: 0 1px 1px 0;
+  border-color: var(--line);
+  transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+:is(.cm-table, .cm-render-table) :is(th, td):last-child {
+  border-right-width: 0;
+}
+:is(.cm-table, .cm-render-table) tr:last-child td {
+  border-bottom-width: 0;
+}
+:is(.cm-table, .cm-render-table) th {
+  background-color: var(--pc-soo);
+  color: var(--accent);
+  font-weight: 700;
+}
+:is(.cm-table, .cm-render-table) tbody tr:hover td {
+  background-color: var(--pc-soo);
+}
+:is(.cm-table, .cm-render-table) tbody td:hover {
+  color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--pc-shallow);
+}

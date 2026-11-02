@@ -1,0 +1,69 @@
+/* Cherry: phycat-cherry, phycat-color (light), after sumruler's typora-theme-phycat (MIT).
+   InkDo's tokens first (contrast-checked), then upstream's colours for the chrome. One appearance. */
+:root {
+  --font-body: Optima-Regular, Optima, "LXGW WenKai", PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color-scheme: light;
+  --font-mono: "Cascadia Code", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --bg: #fdf6f6;
+  --bg-side: #fbf2f2;
+  --sb: #f8eded;
+  --sb-line: rgba(36, 20, 22, 0.12);
+  --sb-hover: rgba(36, 20, 22, 0.04);
+  --sb-on: rgba(36, 20, 22, 0.1);
+  --field: rgba(36, 20, 22, 0.05);
+  --card: #fefbfb;
+  --text: #241416;
+  --text-2: #5e4649;
+  --text-3: #6d5457;
+  --mark: #9f8d8f;
+  --line: rgba(36, 20, 22, 0.12);
+  --line-2: rgba(36, 20, 22, 0.22);
+  --accent: #9a0036;
+  --on-accent: #fff7f9;
+  --sel: rgba(154, 0, 54, 0.16);
+  --hover: rgba(36, 20, 22, 0.05);
+  --row-on: rgba(36, 20, 22, 0.08);
+  --del: #a3123f;
+  --bg-pop: rgba(254, 251, 251, 0.9);
+  --shadow-pop: 0 0 0 0.5px rgba(36, 20, 22, 0.14), 0 8px 24px -6px rgba(0, 0, 0, 0.16);
+  --shadow-pal: 0 0 0 0.5px rgba(36, 20, 22, 0.14), 0 24px 60px -10px rgba(0, 0, 0, 0.3);
+  --scrim: rgba(36, 20, 22, 0.18);
+  --code-bg: rgba(36, 20, 22, 0.04);
+  --hl: rgba(154, 0, 54, 0.24);
+  --hl-on: rgba(154, 0, 54, 0.46);
+  --diff-del: rgba(0, 0, 0, 0.06);
+  --diff-del-on: rgba(163, 18, 63, 0.2);
+  --diff-add: rgba(11, 122, 75, 0.1);
+  --diff-add-on: rgba(11, 122, 75, 0.24);
+  --c-red: #a3123f;
+  --c-orange: #a4580a;
+  --c-green: #0b7a4b;
+  --c-blue: #1f6c9e;
+  --c-purple: #74407f;
+  --c-gray: #6d5457;
+  --knob: #fefbfb;
+  --shadow-ctl: 0 0 0 0.5px rgba(36, 20, 22, 0.18), 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 6px 24px rgba(0, 0, 0, 0.1);
+  --media-bg: #0d0f14;
+  --th-bg: rgba(36, 20, 22, 0.03);
+  --dg-node: #f1d8df;
+  --dg-node-line: #d087a0;
+  --dg-alt: #f8eded;
+  --dg-alt-2: #fbf2f2;
+  --dg-edge: #6d5457;
+  --dg-note: #fbecd5;
+  --dg-note-line: #edd296;
+}
+
+.cm-editor {
+  --pc-title: #aa1141;
+  --pc-h2-text: #fff;
+  --pc-h2-bg: linear-gradient(to right, #b41919, #ea68b6, #b41919);
+  --pc-el: #aa1111;
+  --pc-deep: #9a0036;
+  --pc-shallow: #ffa6a6;
+  --pc-so: #ff40404f;
+  --pc-soo: #fec2c225;
+  --pc-code: #9a0000;
+  --pc-code-bg: #b16c6c25;
+}

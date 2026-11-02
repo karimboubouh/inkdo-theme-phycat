@@ -1,0 +1,169 @@
+/* ── phycat-neon ───────────────────────────────────────────────────────────────────────────
+   The dark series, after upstream phycat.dark.css: glass, glow and neon strips over the same
+   chrome. Palettes set --pc-glow and --pc-alt (upstream's --glow-color, --secondary-color). */
+
+.cm-line:is(.cm-h1, .cm-title) {
+  transition: color .3s ease, transform .3s ease, text-shadow .3s ease;
+}
+.cm-line:is(.cm-h1, .cm-title)::after {
+  background: var(--pc-title);
+  box-shadow: 0 0 5px var(--pc-glow);
+  transition: width .4s cubic-bezier(.25, .8, .25, 1), box-shadow .3s ease;
+}
+.cm-line:is(.cm-h1, .cm-title):hover {
+  color: var(--text);
+  text-shadow: 0 0 8px var(--pc-glow);
+}
+.cm-line:is(.cm-h1, .cm-title):hover::after {
+  box-shadow: 0 0 15px var(--pc-title);
+}
+
+/* H2: frosted glass with a glow rising from below; it lights up on hover. */
+.cm-line.cm-h2 {
+  padding-inline: 10px;
+  transition: color .5s ease, text-shadow .5s ease, transform .5s ease;
+}
+.cm-line.cm-h2::before {
+  background-color: rgba(255, 255, 255, .02);
+  background-image: var(--pc-h2-bg);
+  background-size: auto;
+  background-repeat: no-repeat;
+  border-top: 1px solid rgba(255, 255, 255, .08);
+  box-shadow: none;
+  transition: box-shadow .5s ease;
+}
+.cm-line.cm-h2:hover {
+  color: var(--pc-el);
+  text-shadow: 0 0 8px var(--pc-glow);
+  transform: translateY(-1px);
+}
+.cm-line.cm-h2:hover::before {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
+}
+
+.cm-line.cm-h3::before {
+  left: 0;
+  width: 4px;
+  height: 16px;
+  border-radius: 2px;
+  background: var(--pc-el);
+  opacity: .8;
+}
+.cm-line.cm-h3 {
+  padding-left: 15px;
+}
+.cm-line.cm-h3:hover {
+  padding-left: 20px;
+  color: var(--pc-el);
+  text-shadow: 0 0 8px var(--pc-glow);
+}
+.cm-line.cm-h3:hover::before {
+  width: 4px;
+  height: 16px;
+  opacity: 1;
+  box-shadow: 0 0 8px var(--pc-glow);
+}
+.cm-line:is(.cm-h4, .cm-h5)::before {
+  width: 8px;
+  height: 8px;
+  margin-right: 10px;
+}
+.cm-line.cm-h5::before {
+  background-color: transparent;
+}
+.cm-line:is(.cm-h4, .cm-h5, .cm-h6):hover {
+  color: var(--pc-el);
+}
+
+.cm-ink-strong {
+  color: var(--pc-el);
+  text-shadow: 0 0 2px rgba(0, 243, 255, .3);
+}
+.cm-ink-strong:hover {
+  border-bottom-color: var(--pc-el);
+  text-shadow: 0 0 8px var(--pc-glow), 0 0 15px var(--pc-el);
+}
+.cm-ink-em:hover {
+  color: var(--pc-el);
+  -webkit-text-stroke: .5px var(--pc-el);
+  text-shadow: 0 0 8px var(--pc-glow);
+}
+
+.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)) {
+  color: var(--pc-el);
+}
+.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour))::before {
+  margin-right: 4px;
+}
+.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)):hover {
+  color: var(--pc-el);
+  text-shadow: 0 0 8px var(--pc-glow);
+}
+
+/* Quotes: a dark glass bubble with a bulb that lights and straightens on hover. */
+.cm-quote {
+  background-color: rgba(0, 0, 0, .2);
+  box-shadow: inset 1px 0 0 color-mix(in srgb, var(--pc-alt), transparent 70%),
+    inset -1px 0 0 color-mix(in srgb, var(--pc-alt), transparent 70%);
+}
+.cm-line:not(.cm-quote) + .cm-quote::before,
+.cm-quote:first-child::before {
+  content: "💡";
+  inset: 6px auto auto 10px;
+  filter: grayscale(1);
+  opacity: .8;
+  transform: rotate(30deg);
+  transition: filter .3s ease, opacity .3s ease, transform .3s cubic-bezier(.34, 1.56, .64, 1);
+}
+.cm-quote:hover {
+  background-color: color-mix(in srgb, var(--pc-el), transparent 95%);
+}
+.cm-line:not(.cm-quote) + .cm-quote:hover::before,
+.cm-quote:first-child:hover::before {
+  filter: grayscale(0);
+  opacity: 1;
+  transform: rotate(0);
+  text-shadow: 0 0 10px var(--pc-el);
+}
+
+/* Rules: a neon strip that fades out at both ends. */
+.cm-hr::after {
+  height: 1px;
+  border-top: 0;
+  background: linear-gradient(90deg, transparent, var(--pc-el), transparent);
+  opacity: .5;
+  transform: none;
+}
+.cm-hr:hover::after {
+  opacity: 1;
+  transform: none;
+  box-shadow: 0 0 8px var(--pc-glow);
+}
+
+.cm-ink-code {
+  color: var(--pc-el);
+  background-color: color-mix(in srgb, var(--pc-el), transparent 90%);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--pc-el), transparent 85%);
+  padding: 2px 6px;
+}
+.cm-ink-code:hover {
+  color: var(--bg);
+  box-shadow: 0 0 15px color-mix(in srgb, var(--pc-el), transparent 60%);
+}
+
+.cm-ink-hl {
+  color: color-mix(in srgb, var(--pc-el), #fff 20%);
+  background-image: linear-gradient(to top, color-mix(in srgb, var(--pc-el), transparent 50%),
+    transparent);
+}
+
+:is(.cm-table, .cm-render-table) table {
+  border-color: color-mix(in srgb, #fff, transparent 90%);
+}
+:is(.cm-table, .cm-render-table) :is(th, td) {
+  border-color: color-mix(in srgb, #fff, transparent 95%);
+}
+:is(.cm-table, .cm-render-table) th {
+  background-color: color-mix(in srgb, var(--pc-el), transparent 90%);
+  color: var(--text);
+}
