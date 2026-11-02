@@ -351,6 +351,10 @@
   text-shadow: 0 0 0 var(--pc-deep);
 }
 
+/* ── phycat chrome, blocks ─────────────────────────────────────────────────────────────────
+   Quotes, rules, code, highlights, lists and tasks, tables (the headings, marks and links are
+   in chrome.css). After upstream phycat.light.css (sumruler, MIT). */
+
 /* Quotes: a tinted bubble with a sparkle, opened on the first line, closed on the last. */
 .cm-quote {
   padding-inline: 48px 20px;

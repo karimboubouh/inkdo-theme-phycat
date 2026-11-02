@@ -1,0 +1,165 @@
+/* ── phycat chrome, blocks ─────────────────────────────────────────────────────────────────
+   Quotes, rules, code, highlights, lists and tasks, tables (the headings, marks and links are
+   in chrome.css). After upstream phycat.light.css (sumruler, MIT). */
+
+/* Quotes: a tinted bubble with a sparkle, opened on the first line, closed on the last. */
+.cm-quote {
+  padding-inline: 48px 20px;
+  color: var(--text-2);
+  background-color: var(--pc-soo);
+  transition: background-color 0.3s ease;
+}
+.cm-quote::before {
+  content: none;
+}
+.cm-line:not(.cm-quote) + .cm-quote,
+.cm-quote:first-child {
+  padding-top: 18px;
+  border-start-start-radius: 16px;
+  border-start-end-radius: 16px;
+}
+.cm-line:not(.cm-quote) + .cm-quote::before,
+.cm-quote:first-child::before {
+  content: "✨";
+  inset: 18px auto auto 16px;
+  width: auto;
+  background: none;
+  font-size: 20px;
+  line-height: 1;
+}
+.cm-quote:has(+ .cm-line:not(.cm-quote)),
+.cm-quote:last-child {
+  padding-bottom: 18px;
+  border-end-start-radius: 16px;
+  border-end-end-radius: 16px;
+}
+
+/* Rules: a dashed line that opens to full width on hover. */
+.cm-hr::after {
+  border-top: 3px dashed var(--pc-shallow);
+  opacity: 0.6;
+  transform: scaleX(0.8);
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease,
+    border-color 0.4s ease;
+}
+.cm-hr:hover::after {
+  border-top-color: var(--pc-el);
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Inline code in the palette's code colours; it fills on hover. */
+.cm-ink-code {
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+  color: var(--pc-code);
+  background-color: var(--pc-code-bg);
+  padding: 2px 5px;
+  margin: 0 2px;
+  border-radius: 6px;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.cm-ink-code:hover {
+  color: #fff;
+  background-color: var(--pc-el);
+  box-shadow: 0 4px 10px var(--pc-so);
+}
+.cm-fence .cm-ink-code:hover {
+  color: inherit;
+  background: none;
+  box-shadow: none;
+}
+
+/* Highlights: a marker stroke that fills the word on hover. */
+.cm-ink-hl {
+  background-color: transparent;
+  background-image: linear-gradient(to top, var(--pc-so), var(--pc-so));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 40%;
+  border-radius: 4px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition:
+    background-size 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-radius 0.3s ease;
+}
+.cm-ink-hl:hover {
+  background-size: 100% 100%;
+  border-radius: 6px;
+}
+
+/* Lists and tasks: round boxes that fill and pulse when ticked; done tasks are struck through. */
+.cm-bullet {
+  color: var(--pc-el);
+}
+.cm-task-box rect {
+  rx: 8px;
+  stroke: var(--pc-deep);
+}
+.cm-task-box.is-checked rect {
+  fill: var(--pc-el);
+  stroke: var(--pc-el);
+}
+.cm-task-box.is-checked path {
+  stroke: #fff;
+}
+.cm-task-box.is-checked svg {
+  animation: task-pulse 0.4s forwards;
+}
+@keyframes task-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.cm-task-done {
+  color: var(--text-3);
+  text-decoration: line-through 1.5px;
+  text-decoration-color: var(--pc-el);
+}
+
+/* Tables: a rounded frame, tinted header, the row and the cell under the pointer. */
+:is(.cm-table, .cm-render-table) table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--pc-shallow);
+  border-radius: 8px;
+  overflow: hidden;
+}
+:is(.cm-table, .cm-render-table) :is(th, td) {
+  border-width: 0 1px 1px 0;
+  border-color: var(--line);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+:is(.cm-table, .cm-render-table) :is(th, td):last-child {
+  border-right-width: 0;
+}
+:is(.cm-table, .cm-render-table) tr:last-child td {
+  border-bottom-width: 0;
+}
+:is(.cm-table, .cm-render-table) th {
+  background-color: var(--pc-soo);
+  color: var(--accent);
+  font-weight: 700;
+}
+:is(.cm-table, .cm-render-table) tbody tr:hover td {
+  background-color: var(--pc-soo);
+}
+:is(.cm-table, .cm-render-table) tbody td:hover {
+  color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--pc-shallow);
+}

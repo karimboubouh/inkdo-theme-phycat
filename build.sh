@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Builds one complete InkDo theme per palette: themes/<Name>/theme.css = palette + chrome
-# (+ neon for the dark series). Each folder zips into an importable theme (README.md).
+# Builds one complete InkDo theme per palette: themes/<Name>/theme.css = palette + chrome +
+# blocks (+ neon for the dark series). Each folder zips into an importable theme (README.md).
 set -euo pipefail
 cd "$(dirname "$0")"
 rm -rf themes
@@ -14,6 +14,8 @@ for palette in src/palettes/*.css; do
     cat "$palette"
     printf '\n'
     cat src/chrome.css
+    printf '\n'
+    cat src/blocks.css
     if grep -q 'phycat-neon' "$palette"; then printf '\n'; cat src/neon.css; fi
   } >"themes/$name/theme.css"
 done

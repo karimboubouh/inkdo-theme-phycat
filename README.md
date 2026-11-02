@@ -23,9 +23,10 @@ community theme: you can read it, fork it, and send fixes.
 
 ```
 src/palettes/<name>.css   InkDo's tokens (checked at 4.5:1) and upstream's colours as --pc-*
-src/chrome.css            the writing surface, after upstream phycat.light.css
+src/chrome.css            headings, marks and links, after upstream phycat.light.css
+src/blocks.css            quotes, rules, code, highlights, tasks and tables
 src/neon.css              the dark series' glass and glow, after upstream phycat.dark.css
-build.sh                  writes themes/<Name>/theme.css (palette + chrome [+ neon])
+build.sh                  writes themes/<Name>/theme.css (palette + chrome + blocks [+ neon])
 themes/<Name>/theme.css   built; one complete theme each
 ```
 
