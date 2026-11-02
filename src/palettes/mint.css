@@ -1,7 +1,9 @@
 /* Mint: phycat-mint, phycat-color (light), after sumruler's typora-theme-phycat (MIT).
    InkDo's tokens first (contrast-checked), then upstream's colours for the chrome. One appearance. */
 :root {
-  --font-body: Optima-Regular, Optima, "LXGW WenKai", PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  --font-body:
+    Optima-Regular, Optima, "LXGW WenKai", PingFangSC-light, PingFangTC-light, "PingFang SC",
+    Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   color-scheme: light;
   --font-mono: "Cascadia Code", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --bg: #f3fbfb;
@@ -58,7 +60,7 @@
 .cm-editor {
   --pc-title: #3db8bf;
   --pc-h2-text: #fff;
-  --pc-h2-bg: linear-gradient(to right, #80F7C4,#3DB8D3, #80F7C4);
+  --pc-h2-bg: linear-gradient(to right, #80f7c4, #3db8d3, #80f7c4);
   --pc-el: #3db8bf;
   --pc-deep: #089ba3;
   --pc-shallow: #7aeaf0;

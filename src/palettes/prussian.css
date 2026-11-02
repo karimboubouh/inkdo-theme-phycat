@@ -1,7 +1,9 @@
 /* Prussian: phycat-prussian, phycat-color (light), after sumruler's typora-theme-phycat (MIT).
    InkDo's tokens first (contrast-checked), then upstream's colours for the chrome. One appearance. */
 :root {
-  --font-body: Optima-Regular, Optima, "LXGW WenKai", PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  --font-body:
+    Optima-Regular, Optima, "LXGW WenKai", PingFangSC-light, PingFangTC-light, "PingFang SC",
+    Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   color-scheme: light;
   --font-mono: "Cascadia Code", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --bg: #f4f8fc;
@@ -58,7 +60,7 @@
 .cm-editor {
   --pc-title: #1d4e89;
   --pc-h2-text: #fff;
-  --pc-h2-bg: linear-gradient(to right, #6BA3CC, #1D4E89, #6BA3CC);
+  --pc-h2-bg: linear-gradient(to right, #6ba3cc, #1d4e89, #6ba3cc);
   --pc-el: #1d4e89;
   --pc-deep: #003153;
   --pc-shallow: #6ba3cc;

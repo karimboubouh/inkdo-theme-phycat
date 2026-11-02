@@ -1,7 +1,9 @@
 /* Vampire: phycat-vampire, phycat-neon (dark), after sumruler's typora-theme-phycat (MIT).
    InkDo's tokens first (contrast-checked), then upstream's colours for the chrome. One appearance. */
 :root {
-  --font-body: Optima-Regular, Optima, "LXGW WenKai", PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  --font-body:
+    Optima-Regular, Optima, "LXGW WenKai", PingFangSC-light, PingFangTC-light, "PingFang SC",
+    Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   color-scheme: dark;
   --font-mono: "Cascadia Code", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --bg: #282a36;

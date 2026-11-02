@@ -4,7 +4,9 @@
 /* Caramel: phycat-caramel, phycat-color (light), after sumruler's typora-theme-phycat (MIT).
    InkDo's tokens first (contrast-checked), then upstream's colours for the chrome. One appearance. */
 :root {
-  --font-body: Optima-Regular, Optima, "LXGW WenKai", PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  --font-body:
+    Optima-Regular, Optima, "LXGW WenKai", PingFangSC-light, PingFangTC-light, "PingFang SC",
+    Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   color-scheme: light;
   --font-mono: "Cascadia Code", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --bg: #fdf9f0;
@@ -99,7 +101,9 @@
   margin-inline: auto;
   padding-bottom: 12px;
   text-align: center;
-  transition: color .3s ease, transform .3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 .cm-line:is(.cm-h1, .cm-title)::after {
   content: "";
@@ -112,7 +116,7 @@
   background: var(--pc-h2-bg);
   background-size: 100% auto;
   transform: translateX(-50%);
-  transition: width .4s cubic-bezier(.25, .8, .25, 1);
+  transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 .cm-line:is(.cm-h1, .cm-title):hover {
   color: var(--pc-title);
@@ -130,7 +134,7 @@
   box-sizing: border-box;
   padding-inline: 12px;
   color: var(--pc-h2-text);
-  transition: transform .4s ease;
+  transition: transform 0.4s ease;
 }
 .cm-line.cm-h2::before {
   content: "";
@@ -141,26 +145,30 @@
   background: var(--pc-h2-bg);
   background-size: 200% auto;
   background-position: 0 center;
-  box-shadow: 0 2px 5px rgba(61, 184, 211, .15);
-  transition: background-position .5s ease-out, box-shadow .4s ease;
+  box-shadow: 0 2px 5px rgba(61, 184, 211, 0.15);
+  transition:
+    background-position 0.5s ease-out,
+    box-shadow 0.4s ease;
 }
 .cm-line.cm-h2 .cm-ink-mark {
   color: inherit;
-  opacity: .7;
+  opacity: 0.7;
 }
 .cm-line.cm-h2:hover {
   transform: scale(1.01);
 }
 .cm-line.cm-h2:hover::before {
   background-position: 100% center;
-  box-shadow: 0 8px 20px rgba(61, 184, 211, .35);
+  box-shadow: 0 8px 20px rgba(61, 184, 211, 0.35);
 }
 
 /* H3: a bar before the heading that thickens as the heading steps right. */
 .cm-line.cm-h3 {
   width: fit-content;
   padding-left: 10px;
-  transition: padding-left .3s cubic-bezier(.25, .8, .25, 1), color .3s ease;
+  transition:
+    padding-left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+    color 0.3s ease;
 }
 .cm-line.cm-h3::before {
   content: "";
@@ -172,7 +180,9 @@
   border-radius: 4px;
   background-color: var(--pc-title);
   transform: translateY(-50%);
-  transition: width .3s cubic-bezier(.25, .8, .25, 1), transform .3s cubic-bezier(.25, .8, .25, 1);
+  transition:
+    width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+    transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 .cm-line.cm-h3:hover {
   padding-left: 18px;
@@ -185,13 +195,17 @@
 
 /* H4, H5 and H6: a filled dot, a ring and a dash, which spring on hover. */
 .cm-line:is(.cm-h4, .cm-h5, .cm-h6) {
-  transition: color .3s ease, transform .3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 .cm-line:is(.cm-h4, .cm-h5, .cm-h6)::before {
   display: inline-block;
   margin-right: 7px;
-  transition: transform .3s cubic-bezier(.34, 1.56, .64, 1), box-shadow .3s ease,
-    background-color .3s ease;
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
 }
 .cm-line:is(.cm-h4, .cm-h5)::before {
   content: "";
@@ -237,7 +251,10 @@
   border-bottom: 2px solid transparent;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  transition: border-color .3s ease, color .3s ease, text-shadow .3s ease;
+  transition:
+    border-color 0.3s ease,
+    color 0.3s ease,
+    text-shadow 0.3s ease;
 }
 .cm-ink-strong:hover {
   border-bottom-color: var(--pc-shallow);
@@ -248,34 +265,52 @@
 .cm-ink-em {
   color: var(--text-2);
   padding: 0 2px 1px;
-  background-image: linear-gradient(-45deg, transparent 35%, var(--pc-shallow) 35%,
-    var(--pc-shallow) 65%, transparent 65%);
+  background-image: linear-gradient(
+    -45deg,
+    transparent 35%,
+    var(--pc-shallow) 35%,
+    var(--pc-shallow) 65%,
+    transparent 65%
+  );
   background-repeat: repeat-x;
   background-position: 0 100%;
   background-size: 6px 3px;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  transition: color .2s ease, -webkit-text-stroke .2s ease;
+  transition:
+    color 0.2s ease,
+    -webkit-text-stroke 0.2s ease;
 }
 .cm-ink-em:hover {
   color: var(--accent);
-  -webkit-text-stroke: .5px var(--accent);
-  background-image: linear-gradient(-45deg, transparent 35%, var(--pc-el) 35%,
-    var(--pc-el) 65%, transparent 65%);
-  animation: stitchFlow .5s linear infinite;
+  -webkit-text-stroke: 0.5px var(--accent);
+  background-image: linear-gradient(
+    -45deg,
+    transparent 35%,
+    var(--pc-el) 35%,
+    var(--pc-el) 65%,
+    transparent 65%
+  );
+  animation: stitchFlow 0.5s linear infinite;
 }
 @keyframes stitchFlow {
-  from { background-position-x: 0; }
-  to { background-position-x: 6px; }
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: 6px;
+  }
 }
 
 .cm-ink-del {
   color: var(--text-3);
   text-decoration-color: var(--pc-el);
-  transition: opacity .3s ease, text-decoration-color .3s ease;
+  transition:
+    opacity 0.3s ease,
+    text-decoration-color 0.3s ease;
 }
 .cm-ink-del:hover {
-  opacity: .6;
+  opacity: 0.6;
   text-decoration-color: var(--pc-deep);
 }
 
@@ -288,18 +323,22 @@
   margin: 0 -2px;
   border-radius: 4px;
   text-decoration: none;
-  transition: color .2s ease, background-color .2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 .cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour))::before {
   content: "🔗";
   display: inline-block;
   width: 1em;
   margin-right: 2px;
-  font-size: .85em;
+  font-size: 0.85em;
   line-height: 1;
   color: transparent;
   text-shadow: 0 0 0 var(--pc-el);
-  transition: transform .4s cubic-bezier(.25, .8, .25, 1), text-shadow .2s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+    text-shadow 0.2s ease;
 }
 .cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)):hover {
   color: var(--accent);
@@ -315,7 +354,7 @@
   padding-inline: 48px 20px;
   color: var(--text-2);
   background-color: var(--pc-soo);
-  transition: background-color .3s ease;
+  transition: background-color 0.3s ease;
 }
 .cm-quote::before {
   content: none;
@@ -345,9 +384,12 @@
 /* Rules: a dashed line that opens to full width on hover. */
 .cm-hr::after {
   border-top: 3px dashed var(--pc-shallow);
-  opacity: .6;
-  transform: scaleX(.8);
-  transition: transform .4s ease, opacity .4s ease, border-color .4s ease;
+  opacity: 0.6;
+  transform: scaleX(0.8);
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease,
+    border-color 0.4s ease;
 }
 .cm-hr:hover::after {
   border-top-color: var(--pc-el);
@@ -357,14 +399,17 @@
 
 /* Inline code in the palette's code colours; it fills on hover. */
 .cm-ink-code {
-  font-size: .9em;
-  letter-spacing: .5px;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
   color: var(--pc-code);
   background-color: var(--pc-code-bg);
   padding: 2px 5px;
   margin: 0 2px;
   border-radius: 6px;
-  transition: color .2s ease, background-color .2s ease, box-shadow .2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 .cm-ink-code:hover {
   color: #fff;
@@ -387,7 +432,9 @@
   border-radius: 4px;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  transition: background-size .3s cubic-bezier(.34, 1.56, .64, 1), border-radius .3s ease;
+  transition:
+    background-size 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-radius 0.3s ease;
 }
 .cm-ink-hl:hover {
   background-size: 100% 100%;
@@ -410,12 +457,18 @@
   stroke: #fff;
 }
 .cm-task-box.is-checked svg {
-  animation: task-pulse .4s forwards;
+  animation: task-pulse 0.4s forwards;
 }
 @keyframes task-pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.15); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 .cm-task-done {
   color: var(--text-3);
@@ -434,7 +487,10 @@
 :is(.cm-table, .cm-render-table) :is(th, td) {
   border-width: 0 1px 1px 0;
   border-color: var(--line);
-  transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 :is(.cm-table, .cm-render-table) :is(th, td):last-child {
   border-right-width: 0;
