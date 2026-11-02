@@ -36,10 +36,10 @@ Edit `src/`, run `./build.sh`, then import the theme to try it.
 
 InkDo themes are CSS with three limits (InkDo's THEMING.md), and the port keeps to them:
 
-- **Nothing loads.** No fonts or images: upstream's chain icon on links (an SVG mask) is the 🔗
-  glyph drawn in one colour, turning the same half circle on hover. The heading icons, page
-  textures and code-block window dots, all SVG images upstream, are left out. Fonts are named
-  (Optima, Cascadia Code) and used when they are installed.
+- **Nothing loads.** No fonts or images: upstream's chain icon on links (an SVG mask) is drawn
+  with two bordered links in the same thin line, turning the same half circle on hover. The
+  heading icons, page textures and code-block window dots, all SVG images upstream, are left
+  out. Fonts are named (Optima, Cascadia Code) and used when they are installed.
 - **No margins.** InkDo's editor measures every line, so spacing stays InkDo's; the H2 pill is
   drawn behind the line instead of around a block.
 - **Readable text.** Text you read (bold, links, hover colours) uses each palette's InkDo accent,

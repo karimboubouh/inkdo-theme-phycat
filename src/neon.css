@@ -102,9 +102,6 @@
 .cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)) {
   color: var(--pc-el);
 }
-.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour))::before {
-  margin-right: 4px;
-}
 .cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)):hover {
   color: var(--pc-el);
   text-shadow: 0 0 8px var(--pc-glow);
