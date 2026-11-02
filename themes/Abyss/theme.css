@@ -174,7 +174,7 @@
   border-radius: 4px;
   background-color: var(--pc-title);
   transform: translateY(-50%);
-  transition: width .3s cubic-bezier(.25, .8, .25, 1), height .3s cubic-bezier(.25, .8, .25, 1);
+  transition: width .3s cubic-bezier(.25, .8, .25, 1), transform .3s cubic-bezier(.25, .8, .25, 1);
 }
 .cm-line.cm-h3:hover {
   padding-left: 18px;
@@ -182,7 +182,7 @@
 }
 .cm-line.cm-h3:hover::before {
   width: 7px;
-  height: calc(18.5px * var(--ts));
+  transform: translateY(-50%) scaleY(1.08);
 }
 
 /* H4, H5 and H6: a filled dot, a ring and a dash, which spring on hover. */
@@ -421,10 +421,8 @@
 }
 .cm-task-done {
   color: var(--text-3);
-  background-image: linear-gradient(currentColor, currentColor);
-  background-position: 0 50%;
-  background-size: 100% 1.5px;
-  background-repeat: no-repeat;
+  text-decoration: line-through 1.5px;
+  text-decoration-color: var(--pc-el);
 }
 
 /* Tables: a rounded frame, tinted header, the row and the cell under the pointer. */
@@ -520,7 +518,7 @@
 }
 .cm-line.cm-h3:hover::before {
   width: 4px;
-  height: 16px;
+  transform: translateY(-50%);
   opacity: 1;
   box-shadow: 0 0 8px var(--pc-glow);
 }

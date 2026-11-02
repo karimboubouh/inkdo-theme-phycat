@@ -59,7 +59,7 @@
 }
 .cm-line.cm-h3:hover::before {
   width: 4px;
-  height: 16px;
+  transform: translateY(-50%);
   opacity: 1;
   box-shadow: 0 0 8px var(--pc-glow);
 }
