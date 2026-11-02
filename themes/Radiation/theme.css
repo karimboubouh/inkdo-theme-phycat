@@ -83,7 +83,7 @@
    What changes from upstream, and why:
    - No margins: CodeMirror measures each line, so spacing stays InkDo's and bands are drawn
      inside the line (H2's pill is a ::before), never by margins.
-   - No images or fonts are loaded: the chain icon on links is the 🔗 glyph drawn in one colour
+   - No images or fonts are loaded: the chain icon on links is drawn with two bordered links
      (upstream masks an SVG); fonts are named, and used when installed.
    - Text that must be read (strong, links, hover colours) uses the palette's --accent, which
      InkDo checks at 4.5:1; upstream's lighter element colours draw the decorations.
@@ -316,39 +316,65 @@
   text-decoration-color: var(--pc-deep);
 }
 
-/* Links: text-coloured, with the chain icon that turns half a circle on hover. Coloured text
-   (`[text]{.red}`) and callout marks use the link mark too, and are left alone. */
-.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)) {
+/* Links: text-coloured, with the chain icon that turns half a circle on hover. CodeMirror cuts
+   a link into pieces (around bold, hidden marks, the URL), so the text pieces take the colour,
+   and the chain goes once, before the first piece: never on a mark or the URL, nor on a piece
+   that follows a hidden mark inside the same link, nor while the line shows a link's syntax.
+   Coloured text (`[text]{.red}`) and callout marks use the link mark too, and are left alone. */
+.cm-ink-link:not(.cm-ink-mark, .cm-ink-url, :is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)) {
   color: var(--text);
   font-weight: 500;
-  padding: 2px 4px;
-  margin: 0 -2px;
+  padding: 2px 0;
   border-radius: 4px;
   text-decoration: none;
   transition:
     color 0.2s ease,
     background-color 0.2s ease;
 }
-.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour))::before {
-  content: "🔗";
-  display: inline-block;
-  width: 1em;
-  margin-right: 2px;
-  font-size: 0.85em;
-  line-height: 1;
-  color: transparent;
-  text-shadow: 0 0 0 var(--pc-el);
+.cm-line:not(:has(.cm-ink-link.cm-ink-mark))
+  .cm-ink-link:not(.cm-ink-mark, .cm-ink-url, :is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)):not(
+    .cm-ink-link + .cm-widgetBuffer + [contenteditable="false"] + .cm-widgetBuffer + *
+  ) {
+  --pc-chain: "";
+  position: relative;
+  padding-left: calc(6px + 1em);
+}
+/* The chain: two outlined links side by side, the pair turned to a diagonal about the icon's
+   centre (each link's transform-origin is that centre), so on hover they turn half a circle
+   together, as upstream's masked icon does. Drawn with borders: nothing is loaded. Only the
+   piece above sets --pc-chain: WebKit can match a pseudo-element past a complex :not(), so the
+   pseudo-elements below draw nothing anywhere else. */
+.cm-ink-link:not(.cm-ink-mark, .cm-ink-url, :is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour))::before,
+.cm-ink-link:not(.cm-ink-mark, .cm-ink-url, :is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour))::after {
+  content: var(--pc-chain, none);
+  position: absolute;
+  top: calc(50% - 0.18em);
+  width: 0.62em;
+  height: 0.36em;
+  box-sizing: border-box;
+  border: 0.1em solid var(--pc-el);
+  border-radius: 0.18em;
+  transform: rotate(-45deg);
   transition:
     transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-    text-shadow 0.2s ease;
+    border-color 0.2s ease;
 }
-.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)):hover {
+.cm-ink-link:not(.cm-ink-mark, .cm-ink-url, :is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour))::before {
+  left: 4px;
+  transform-origin: 0.5em 0.18em;
+}
+.cm-ink-link:not(.cm-ink-mark, .cm-ink-url, :is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour))::after {
+  left: calc(4px + 0.38em);
+  transform-origin: 0.12em 0.18em;
+}
+.cm-ink-link:not(.cm-ink-mark, .cm-ink-url, :is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)):hover {
   color: var(--accent);
   background: var(--pc-soo);
 }
-.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)):hover::before {
-  transform: rotate(180deg);
-  text-shadow: 0 0 0 var(--pc-deep);
+.cm-ink-link:not(.cm-ink-mark, .cm-ink-url, :is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)):hover::before,
+.cm-ink-link:not(.cm-ink-mark, .cm-ink-url, :is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)):hover::after {
+  transform: rotate(135deg);
+  border-color: var(--pc-deep);
 }
 
 /* ── phycat chrome, blocks ─────────────────────────────────────────────────────────────────
@@ -618,13 +644,10 @@
   text-shadow: 0 0 8px var(--pc-glow);
 }
 
-.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)) {
+.cm-ink-link:not(.cm-ink-mark, .cm-ink-url, :is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)) {
   color: var(--pc-el);
 }
-.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour))::before {
-  margin-right: 4px;
-}
-.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)):hover {
+.cm-ink-link:not(.cm-ink-mark, .cm-ink-url, :is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)):hover {
   color: var(--pc-el);
   text-shadow: 0 0 8px var(--pc-glow);
 }

@@ -99,10 +99,10 @@
   text-shadow: 0 0 8px var(--pc-glow);
 }
 
-.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)) {
+.cm-ink-link:not(.cm-ink-mark, .cm-ink-url, :is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)) {
   color: var(--pc-el);
 }
-.cm-ink-link:not(:is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)):hover {
+.cm-ink-link:not(.cm-ink-mark, .cm-ink-url, :is(.cm-ink-colour, .cm-callout-mark) *, :has(> .cm-ink-colour)):hover {
   color: var(--pc-el);
   text-shadow: 0 0 8px var(--pc-glow);
 }
